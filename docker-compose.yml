@@ -1,0 +1,16 @@
+# composeファイルのバージョン指定
+# Doc: https://docs.docker.com/compose/compose-file/compose-versioning/
+version: "3.8"
+
+services:
+  front:
+    build:
+      context: ./front
+      args:
+        WORKDIR: $WORKDIR
+    # コンテナで実行したいコマンド(CMD)
+    command: npm run serve
+    volumes:
+      - "./front:/$WORKDIR"
+    ports:
+      - "$FRONT_PORT:8080"
